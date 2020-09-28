@@ -8,8 +8,8 @@
 	email = seth.mccarthy@olo.com
 [diff]
 	algorithm = patience
-	tool = vscode
-	guitool = vscode
+	tool = p4merge
+	guitool = p4merge
 [difftool "p4merge"]
 	path = C:/Program Files/Perforce/p4merge.exe
 [difftool "vscode"]
@@ -33,6 +33,7 @@
 	puff = pull --ff-only --recurse-submodules --prune
 	s = status -s
 	tags = tag -l
+	fix = commit --amend --no-edit
 [rebase]
 	autostash = true
 [core]

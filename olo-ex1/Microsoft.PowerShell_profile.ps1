@@ -16,20 +16,16 @@ function LocalDev {
 	}
 }
 
-#pre-req: choco install vswhere
-function Invoke-MSBuild() 
-{
-    & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MSBuild.exe' /nologo $args
-}
-
 function Invoke-NotepadPlusPlus(){
 	& "C:\Program Files\Notepad++\notepad++.exe" $args
 }
 
-
-
 function Invoke-GitDiffTool(){
 	& git difftool $args
+}
+
+function Invoke-GitBranchClean(){
+	& git branch --merged | %{$_.trim()} | ?{$_ -notmatch 'develop' -and $_ -notmatch 'master' -and $_ -notmatch 'main'} | %{git branch -d $_}
 }
 
 function hugoprod(){
@@ -48,8 +44,8 @@ cd c:\code
 Import-Module 'C:\tools\poshgit\dahlbyk-posh-git-9bda399\src\posh-git.psd1'
 
 Set-Alias npp Invoke-NotepadPlusPlus -scope global
-Set-Alias build Invoke-MSBuild -scope global
 Set-Alias gdt Invoke-GitDiffTool -scope global
+Set-Alias branchclean Invoke-GitBranchClean -scope global
 
 Write-Host "done loading profile"
 
