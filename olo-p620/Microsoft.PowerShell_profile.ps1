@@ -47,6 +47,8 @@ Set-Alias npp Invoke-NotepadPlusPlus -scope global
 Set-Alias gdt Invoke-GitDiffTool -scope global
 Set-Alias branchclean Invoke-GitBranchClean -scope global
 
+Import-Module 'C:\code\pos-data-extract\powershell\PDE-LocalDev'
+
 Write-Host "done loading profile"
 
 
