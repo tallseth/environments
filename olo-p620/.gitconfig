@@ -23,18 +23,22 @@
 [difftool]
 	prompt = false
 [alias]
-	l = log -n 20 --abbrev-commit --pretty=format:'%C(bold blue)%h%Creset %C(bold yellow)%d%Creset %s %Cgreen(%cr)<%an>%Creset'
-	amend = commit -a --amend
-	bclean = "!f() { git branch --merged ${1-develop} | grep -v \\* | grep -v master$ | grep -v ${1-develop}$ | xargs -r git branch -d; }; f"
-	c = clone --recursive
-	co = checkout
-	fetch-pr = "!f() { git fetch -fu $1 refs/pull/$2/head:pull-$2; }; f"
-	go = checkout -B
-	puff = pull --ff-only --recurse-submodules --prune
-	s = status -s
-	tags = tag -l
-	fix = commit --amend --no-edit
 	pushu = push -u origin HEAD
+	l = log -n 20 --abbrev-commit --pretty=format:'%C(bold blue)%h%Creset %C(bold yellow)%d%Creset %s %Cgreen(%cr)<%an>%Creset'
+	co = checkout
+	s = status -s
+    r = "!git rebase -i $(git merge-base HEAD @{-1})"
+    ra = rebase --abort
+    rc = rebase --continue
+	ci = commit
+    cia = commit --amend
+    cif = commit --fixup
+    ciaa = commit -a --amend
+    ciaf = commit -a --fixup
+	bclean = "!f() { git branch --merged ${1-develop} | grep -v \\* | grep -v master$ | grep -v ${1-develop}$ | xargs -r git branch -d; }; f"
+	cp = cherry-pick
+	tags = tag -l
+	
 [rebase]
 	autostash = true
 [core]
