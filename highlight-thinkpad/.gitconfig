@@ -1,0 +1,46 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Seth McCarthy
+	email = seth.mccarthy@olo.com
+[diff]
+	algorithm = patience
+	tool = p4merge
+	guitool = p4merge
+[difftool "p4merge"]
+	path = C:/Program Files/Perforce/p4merge.exe
+[difftool "vscode"]
+	path = code -n -w --diff 
+[merge]
+	tool = vscode
+[mergetool "p4merge"]
+	path = C:/Program Files/Perforce/p4merge.exe
+[mergetool "vscode"]
+	path = code -n -w $MERGED		
+[difftool]
+	prompt = false
+[alias]
+	pushu = push -u origin HEAD
+	l = log -n 20 --abbrev-commit --pretty=format:'%C(bold blue)%h%Creset %C(bold yellow)%d%Creset %s %Cgreen(%cr)<%an>%Creset'
+	co = checkout
+	s = status -s
+    r = "!git rebase -i $(git merge-base HEAD @{-1})"
+    ra = rebase --abort
+    rc = rebase --continue
+	ci = commit
+    cia = commit --amend
+    cif = commit --fixup
+    ciaa = commit -a --amend
+    ciaf = commit -a --fixup
+	bclean = "!f() { git branch --merged ${1-develop} | grep -v \\* | grep -v master$ | grep -v ${1-develop}$ | xargs -r git branch -d; }; f"
+	cp = cherry-pick
+	tags = tag -l
+	
+[rebase]
+	autostash = true
+[core]
+	editor = code -n -w
+	autocrlf = true
