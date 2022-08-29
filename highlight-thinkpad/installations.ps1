@@ -13,3 +13,5 @@ choco install golang
 choco install dbeaver
 choco install googlechrome
 choco install p4merge
+choco install slack
+choco install zoom

@@ -5,7 +5,7 @@
 	required = true
 [user]
 	name = Seth McCarthy
-	email = seth.mccarthy@olo.com
+	email = seth@letshighlight.com
 [diff]
 	algorithm = patience
 	tool = p4merge
